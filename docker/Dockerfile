@@ -1,5 +1,4 @@
 FROM       ubuntu:16.04 as BACKINTIME-BUILDER
-# Using 16.04 for python 3.5
 
 ARG        BACKINTIME_VERSION=1.2.0~alpha0
 
@@ -32,6 +31,13 @@ RUN        mv backintime-common_${BACKINTIME_VERSION}_all.deb  \
 
 
 FROM ubuntu:latest
+ENV BACKINTIME_ARGS="--debug"
+ENV SNAP_HOST="imen@192.168.100.7"
+ENV SSH_HOST="192.168.100.7"
+ENV SSH_PATH="/home/imen"
+ENV SSH_USER="imen"
+ENV SSH_PASS="imen"
+ENV MODE="4"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.5 \
@@ -41,7 +47,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install kubernetes
-
+RUN pip3 install schedule
 RUN        apt-get update && \
            apt-get install -q -y \
              vim   \
@@ -52,9 +58,10 @@ RUN        apt-get update && \
              openssh-client \
              python3-keyring \
              python3-dbus \
+             sshpass \
              cron && \
            rm -rf /var/lib/apt/lists/* /var/tmp/*
-#RUN        add-apt-repository universe
+
 WORKDIR    /root
 
 COPY       --from=BACKINTIME-BUILDER /tmp/backintime/backintime-common.deb .
@@ -64,11 +71,9 @@ RUN        dpkg -i backintime-common.deb && \
 
 RUN        mkdir .ssh && \
            chmod 700 .ssh
-RUN        mkdir -p  /root/backintime/worker/imen/1
-RUN        service cron start
-COPY       do-backup.sh .
-COPY	   backintime.example /root/.config/backintime/config
-COPY       backintime.example .
+#RUN        mkdir -p  /root/backintime/worker/imen/1
+#RUN        service cron start
+COPY       config .
 COPY       main.py .
 EXPOSE 22
 #ENTRYPOINT ["sh", "-c", "/root/do-backup.sh"]
