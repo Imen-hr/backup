@@ -1,0 +1,16 @@
+{{- if .Values.rbac.create }}
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:
+    {{- include "backintimechart.labels" . | nindent 4 }}
+  name: run-{{ template "backintimechart.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "backintimechart.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ template "backintimechart.fullname" . }}-runner
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
