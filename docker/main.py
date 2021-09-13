@@ -14,10 +14,12 @@ mode= os.environ['MODE']
 os.system("service cron start")
 os.system("service ssh start")
 os.system('ssh-keygen -b 3072 -t RSA -N "" -f /root/.ssh/id_rsa')
+#connect passwordless to the host where snapshots will be stored
 os.system("sshpass -p %s ssh-copy-id -o StrictHostKeyChecking=no %s@%s"%(ssh_pass,ssh_user,ssh_host))
 os.system("backintime check-config ")
 
 with open('config', 'a') as file:
+    #configure host user and path to save snapshots  
     file.write("profile1.snapshots.ssh.host=%s\n"%ssh_host)
     file.write("profile1.snapshots.ssh.path=%s\n"%ssh_path)
     file.write("profile1.snapshots.ssh.user=%s\n"%ssh_user)
@@ -32,13 +34,16 @@ def conf_pv():
     j=0
     for i in ret.items:
         os.system("mkdir -p %s"%(i.spec.nfs.path))
+        #mounting pv files
         os.system("mount %s:%s %s"%(i.spec.nfs.server,i.spec.nfs.path,i.spec.nfs.path))
         with open('/root/.config/backintime/config', 'a') as file:
+              #adding pv paths to config file to be included while taking snapshots
               file.write("profile1.snapshots.include.%s.type=0\n"%(j))
               file.write("profile1.snapshots.include.%s.value=%s\n"%(j,i.spec.nfs.path))
         j=j+1
 conf_pv()
 schedule.every(5).minutes.do(conf_pv)
+#backup
 os.system("log 'Checking configuration of backintime'")
 os.system("backintime check-config %s"%backintime_args )
 os.system('log "Starting actual backup with backintime"')
