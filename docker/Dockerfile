@@ -31,6 +31,7 @@ RUN        mv backintime-common_${BACKINTIME_VERSION}_all.deb  \
 
 
 FROM ubuntu:latest
+
 ENV BACKINTIME_ARGS="--debug"
 ENV SNAP_HOST="imen@192.168.100.7"
 ENV SSH_HOST="192.168.100.7"
@@ -71,9 +72,8 @@ RUN        dpkg -i backintime-common.deb && \
 
 RUN        mkdir .ssh && \
            chmod 700 .ssh
-#RUN        mkdir -p  /root/backintime/worker/imen/1
-#RUN        service cron start
+
 COPY       config .
 COPY       main.py .
 EXPOSE 22
-#ENTRYPOINT ["sh", "-c", "/root/do-backup.sh"]
+
