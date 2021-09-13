@@ -11,12 +11,36 @@ imagePullSecrets: []
 env:
   - name: "MODE"
     value: "'2'"
+#Which schedule used for crontab.
+#0 = Disabled
+#1 = at every boot
+#2 = every 5 minute
+#4 = every 10 minute
+#7 = every 30 minute
+#10 = every hour
+#12 = every 2 hours
+#14 = every 4 hours
+#16 = every 6 hours
+#18 = every 12 hours
+#19 = custom defined hours
+#20 = every day
+#25 = daily anacron
+#27 = when drive get connected
+#30 = every week
+#40 = every month
+#80 = every year
+
+
+
+#username and password of the host where snapshots will be stored
   - name: "SNAP_HOST"
     value: "imen@192.168.100.7"
   - name: "SSH_HOST"
     value: "192.168.100.7"
   - name: "SSH_USER"
     value: "imen"
+
+#path : where to save snapshots in the host 
   - name: "SSH_PATH"
     value: "/home/imen"
 
