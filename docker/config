@@ -53,7 +53,7 @@ profile1.snapshots.notify.enabled=true
 profile1.snapshots.path=/root
 profile1.snapshots.path.host=worker
 profile1.snapshots.path.profile=1
-profile1.snapshots.path.user=imen
+profile1.snapshots.path.user=backup
 # Preserve ACL. The  source   and   destination   systems  must  have  compatible  ACL
 # entries for this option to work properly
 profile1.snapshots.preserve_acl=false
