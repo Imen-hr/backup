@@ -56,7 +56,7 @@ spec:
               value: {{ .Values.env.ssh_pass }}
             - name: "SSH_PATH"
               value: {{ .Values.env.ssh_path }}
-          command: [ "python3", "main.py" ]
+          command: [ "python3", "main.py","tail -f /dev/null"]
           securityContext:
             privileged: true
             capabilities:
