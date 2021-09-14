@@ -39,6 +39,9 @@ env:
     value: "192.168.100.7"
   - name: "SSH_USER"
     value: "imen"
+  - name: "SSH_PASS"
+    value: "imen"
+
 
 #path : where to save snapshots in the host 
   - name: "SSH_PATH"
