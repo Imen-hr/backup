@@ -1,6 +1,6 @@
 # backup
 <br>
-To install the helm follow : 
+To install the helm: 
 <pre>
     <code>
 helm install backintime backup --set env.MODE="'2'" \
