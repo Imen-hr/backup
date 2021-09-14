@@ -3,10 +3,6 @@
 To install the helm: 
 <pre>
     <code>
-helm install backintime backup --set env.MODE="'2'" \
---set env.SSH_HOST="192.168.100.7" \
---set env.SSH_USER="imen" \
---set env.SSH_PASS="imen" \
---set env.SSH_PATH="/home/imen"
+helm install backintup backintimechart --set env.mode="'2'" --set env.ssh_host="192.168.100.7" --set env.ssh_user="imen" --set env.ssh_pass="imen" --set env.ssh_path="/home/imen"
     </code>
 </pre>

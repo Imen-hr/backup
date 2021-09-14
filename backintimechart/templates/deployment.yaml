@@ -44,10 +44,18 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-             {{- range .Values.env }}
-            - name: {{ .name }}
-              value: {{ .value }}
-          {{- end }}
+            - name: "MODE"
+              value: {{ .Values.env.mode }}
+            - name: "SNAP_HOST"
+              value: {{ .Values.env.snap_host }}
+            - name: "SSH_HOST"
+              value: {{ .Values.env.ssh_host }}
+            - name: "SSH_USER"
+              value: {{ .Values.env.ssh_user }}
+            - name: "SSH_PASS"
+              value: {{ .Values.env.ssh_pass }}
+            - name: "SSH_PATH"
+              value: {{ .Values.env.ssh_path }}
           command: [ "python3", "main.py" ]
           securityContext:
             privileged: true

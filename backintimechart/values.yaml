@@ -9,8 +9,12 @@ imagePullSecrets: []
 
 
 env:
-  - name: "MODE"
-    value: "'2'"
+  mode : "'2'"
+  snap_host : "imen@192.168.100.7" 
+  ssh_host : "192.168.100.7"
+  ssh_user : "imen" 
+  ssh_pass : "imen"
+  ssh_path : "/home/imen"
 #Which schedule used for crontab.
 #0 = Disabled
 #1 = at every boot
@@ -29,23 +33,6 @@ env:
 #30 = every week
 #40 = every month
 #80 = every year
-
-
-
-#username and password of the host where snapshots will be stored
-  - name: "SNAP_HOST"
-    value: "imen@192.168.100.7"
-  - name: "SSH_HOST"
-    value: "192.168.100.7"
-  - name: "SSH_USER"
-    value: "imen"
-  - name: "SSH_PASS"
-    value: "imen"
-
-
-#path : where to save snapshots in the host 
-  - name: "SSH_PATH"
-    value: "/home/imen"
 
 leaderElection:
   # When set to false leader election will be disabled
