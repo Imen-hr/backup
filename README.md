@@ -8,6 +8,8 @@ cd backup
 helm install backintup backintimechart --set env.mode="'2'" --set env.ssh_host="192.168.100.7" --set env.ssh_user="imen" --set env.ssh_pass="imen" --set env.ssh_path="/home/imen"
     </code>
 </pre>
+
+
 **mode :**  
 <br>Allowed Values: 0|1|2|4|7|10|12|14|16|18|19|20|25|27|30|40|80
 <br>             Which  schedule  used  for  crontab.
@@ -33,16 +35,16 @@ helm install backintup backintimechart --set env.mode="'2'" --set env.ssh_host="
 
 
 **ssh_host :**
-ip address of the host where snapshots will be saved
+<br>ip address of the host where snapshots will be saved
 
 **ssh_user :**
-username of the host where snapshots will be saved
+<br>username of the host where snapshots will be saved
 
 **ssh_pass:**
-password
+<br>password
 
 **ssh_path:**
-where exactly save the snapshot
+<br>where exactly save the snapshot
 
 
 # About Config file :
