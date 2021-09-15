@@ -28,10 +28,10 @@ helm install backintup backintimechart --set env.mode="'2'" --set env.ssh_host="
 <br>             30 = every week
 <br>             40 = every month
 <br>             80 = every year
-<br>
+
              Default: 2
 
-<br>
+
 ssh_host :
 ip address of the host where snapshots will be saved
 
@@ -46,7 +46,6 @@ where exactly save the snapshot
 
 
 # About Config file :
-<br>
 <br>some configurations you may need to know :
 
 <br>
@@ -59,22 +58,22 @@ where exactly save the snapshot
 <br>profile1.snapshots.mode
 <br>             Type: str       Allowed Values: local|local_encfs|ssh|ssh_encfs
 <br>             Use mode (or backend) for this snapshot. Look at 'man backintime' section 'Modes'.
-<br>
+
              Default: ssh
-<br>
-<br>
+
+
 <br>profile1.snapshots.cron.ionice
 <br>             Type: bool      Allowed Values: true|false
 <br>             Run cronjobs with 'ionice  -c2  -n7'.  This  will  give  BackInTime  the  lowest  IO
 <br>             bandwidth priority to not interupt any other working process.
-<br>
+
              Default: true
 <br>profile1.snapshots.include.size
 <br>             Type: int       Allowed Values: 0-99999
 <br>             Quantity of profile.snapshots.include.<I> entries.
-<br>
+
              Default: 20
-<br>
+
 For more informations check :
 http://manpages.ubuntu.com/manpages/bionic/man1/backintime-config.1.html
 
