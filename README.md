@@ -43,8 +43,9 @@ ssh_path:
 where exactly save the snapshot
 
 
-#About Config file :
-<br> some configurations you may needto know :
+# About Config file :
+<br>
+some configurations you may needto know :
 profile1.snapshots.check_for_changes
              Type: bool      Allowed Values: true|false
              Perform a dry-run before taking snapshots. Don't take a new snapshot if nothing  has
