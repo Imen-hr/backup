@@ -8,7 +8,7 @@ cd backup
 helm install backintup backintimechart --set env.mode="'2'" --set env.ssh_host="192.168.100.7" --set env.ssh_user="imen" --set env.ssh_pass="imen" --set env.ssh_path="/home/imen"
     </code>
 </pre>
-<br>mode :  
+**mode :**  
 <br>Allowed Values: 0|1|2|4|7|10|12|14|16|18|19|20|25|27|30|40|80
 <br>             Which  schedule  used  for  crontab.
 <br>              0 = Disabled
@@ -32,29 +32,30 @@ helm install backintup backintimechart --set env.mode="'2'" --set env.ssh_host="
              Default: 2
 
 
-ssh_host :
+**ssh_host :**
 ip address of the host where snapshots will be saved
 
-ssh_user :
+**ssh_user :**
 username of the host where snapshots will be saved
 
-ssh_pass:
+**ssh_pass:**
 password
 
-ssh_path:
+**ssh_path:**
 where exactly save the snapshot
 
 
 # About Config file :
 <br>some configurations you may need to know :
 
-<br>
+
 <br>profile1.snapshots.check_for_changes
 <br>             Type: bool      Allowed Values: true|false
 <br>             Perform a dry-run before taking snapshots. Don't take a new snapshot if nothing  has
 <br>             changed. Only valid with profile1.snapshots.full_rsync = false
-<br>
-<br>             Default: false
+
+             Default: false
+
 <br>profile1.snapshots.mode
 <br>             Type: str       Allowed Values: local|local_encfs|ssh|ssh_encfs
 <br>             Use mode (or backend) for this snapshot. Look at 'man backintime' section 'Modes'.
